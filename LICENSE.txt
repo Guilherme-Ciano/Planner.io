@@ -1,0 +1,17 @@
+Licença de Uso Pessoal e Não-Comercial
+
+Esta licença concede permissão a qualquer pessoa que obtenha uma cópia deste software e dos arquivos de documentação associados ao "Planner.io" para uso pessoal e não-comercial, sujeita às seguintes condições:
+
+1. Você não pode utilizar este software para fins comerciais, incluindo, mas não se limitando a, venda, licenciamento ou qualquer forma de ganho financeiro.
+
+2. Você não pode distribuir cópias deste software a terceiros, seja gratuitamente ou mediante pagamento.
+
+3. Você pode modificar o software para uso pessoal, mas não pode distribuir ou disponibilizar tais modificações a terceiros.
+
+4. O software é fornecido "como está", sem garantia expressa ou implícita de qualquer tipo. Os desenvolvedores não são responsáveis por quaisquer danos ou responsabilidades decorrentes do uso do software.
+
+5. Esta licença permanece em vigor até que seja rescindida. Se você violar qualquer uma dessas condições, a sua licença será automaticamente rescindida e você deverá destruir todas as cópias do software em sua posse.
+
+6. A violação destas condições resultará em uma violação dos direitos autorais e poderá resultar em ação judicial.
+
+© 2023 - Guilherme Ciano
