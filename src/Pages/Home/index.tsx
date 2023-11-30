@@ -1,11 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View, TextInput, Button, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { styles } from "./styles";
 import { DataAtual } from "../../Utils/GlobalFunctions";
 
 export default function Homepage() {
   return (
-    <View style={styles.HomeContainer}>
+    <ScrollView contentContainerStyle={styles.HomeContainer}>
       <View style={styles.DateContainer}>
         <Text style={styles.DateNumber}>{DataAtual.day}</Text>
         <Text style={styles.DateMonth}>{DataAtual.month}</Text>
@@ -39,7 +46,133 @@ export default function Homepage() {
         </TouchableOpacity>
       </View>
 
+      <View style={styles.DividerContainer}>
+        <Text style={styles.DividerText}>Assinaturas</Text>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/*  */}
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.MembershipCard}>
+        <Text style={styles.Deadline}>21</Text>
+
+        <View style={styles.MembershipInfo}>
+          <Text style={styles.MembershipCompany}>Spotify</Text>
+          <Text style={styles.MembershipValue}>
+            Assinatura no valor de: R$ 32,90
+          </Text>
+        </View>
+
+        <TouchableOpacity onPress={() => {}}>
+          <Text>✏️</Text>
+        </TouchableOpacity>
+      </View>
+
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }

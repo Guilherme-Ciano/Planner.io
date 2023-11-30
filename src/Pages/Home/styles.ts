@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { GlobalStyles } from "../../Utils/GlobalStyles";
 
-const { Neumorphism } = GlobalStyles;
+const { Neumorphism, NormalText } = GlobalStyles;
 
 export const styles = StyleSheet.create({
   HomeContainer: {
@@ -153,5 +153,75 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
 
     ...Neumorphism,
+  },
+
+  DividerContainer: {
+    width: "90%",
+
+    borderBottomWidth: 2,
+    borderBottomColor: "#F1F1F1",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+
+    marginTop: 10,
+  },
+
+  DividerText: {
+    ...NormalText,
+  },
+
+  MembershipCard: {
+    width: "90%",
+    height: 100,
+
+    display: "flex",
+    flexDirection: "row",
+
+    gap: 24,
+
+    justifyContent: "space-between",
+    alignItems: "center",
+
+    borderRadius: 8,
+    backgroundColor: "#FFF",
+    margin: 10,
+
+    paddingLeft: 10,
+    paddingRight: 30,
+
+    ...Neumorphism,
+  },
+
+  Deadline: {
+    width: "auto",
+
+    color: "#2E2E2E",
+    fontFamily: "RobotoMono_400Regular",
+    fontSize: 40,
+    fontWeight: "700",
+    textAlign: "left",
+  },
+
+  MembershipInfo: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  MembershipCompany: {
+    color: "#2E2E2E",
+    fontFamily: "RobotoMono_400Regular",
+    fontSize: 30,
+    fontWeight: "400",
+    textAlign: "left",
+  },
+
+  MembershipValue: {
+    color: "#2E2E2E",
+    fontFamily: "RobotoMono_400Regular",
+    fontSize: 10,
+    fontWeight: "400",
+    textAlign: "left",
   },
 });

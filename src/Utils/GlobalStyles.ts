@@ -11,4 +11,13 @@ export const GlobalStyles = StyleSheet.create({
     shadowRadius: 10, // Raio da sombra alterado
     elevation: 5,
   },
+
+  NormalText: {
+    color: "#2E2E2E",
+    fontFamily: "Poppins",
+    fontSize: 16,
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: 16,
+  },
 });
