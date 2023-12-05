@@ -68,6 +68,7 @@ export const modalStyles = StyleSheet.create({
 
   SaveBtn: {
     display: "flex",
+    width: "48%",
 
     alignItems: "center",
     justifyContent: "center",
@@ -81,6 +82,15 @@ export const modalStyles = StyleSheet.create({
 
   SaveBtnText: {
     color: "#9AFF8A",
+    textAlign: "center",
+    fontFamily: "Poppins_400Regular",
+    fontSize: 14,
+    fontStyle: "normal",
+    fontWeight: "700",
+  },
+
+  DeleteBtnText: {
+    color: "#FF5454",
     textAlign: "center",
     fontFamily: "Poppins_400Regular",
     fontSize: 14,

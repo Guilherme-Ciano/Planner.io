@@ -1,46 +1,100 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { modalStyles } from "./styles";
 import { Icon } from "react-native-elements";
 import { Pressable } from "react-native";
 import { IMembership } from "../../Utils/GlobalModels";
-import RNPickerSelect from "react-native-picker-select";
 import ModalSelector from "react-native-modal-selector";
+import { generateUid } from "../../Utils/GlobalFunctions";
 
 export interface AddMembershipProps {
   isVisible: boolean;
   SetIsVisible: Dispatch<SetStateAction<boolean>>;
   saveFunction: (data: IMembership) => void;
+  SetMembershipToEdit: Dispatch<SetStateAction<IMembership | undefined>>;
+  membershipToEdit: IMembership | undefined;
+  membershipList: IMembership[];
+  SetMembershipList: Dispatch<SetStateAction<IMembership[]>>;
 }
 
+const dayOptions = Array.from({ length: 31 }, (_, index) => ({
+  key: index + 1,
+  label: `${index + 1}`,
+}));
+
 export default function AddMembership({
-  isVisible,
   SetIsVisible,
   saveFunction,
+  SetMembershipList,
+  SetMembershipToEdit,
+  isVisible,
+  membershipList,
+  membershipToEdit = undefined,
 }: AddMembershipProps) {
-  const dayOptions = Array.from({ length: 31 }, (_, index) => ({
-    key: index + 1,
-    label: `${index + 1}`,
-  }));
-
   const [serviceName, setServiceName] = useState("");
   const [subscriptionValue, setSubscriptionValue] = useState<string>("");
   const [paymentDay, setPaymentDay] = useState<number>(0);
+
+  useEffect(() => {
+    if (membershipToEdit !== undefined) {
+      setPaymentDay(membershipToEdit?.membershipPayday);
+      setServiceName(membershipToEdit?.membershipCompany);
+      setSubscriptionValue(membershipToEdit?.membershipValue);
+    }
+  }, [membershipToEdit]);
 
   const resetStates = () => {
     setServiceName("");
     setSubscriptionValue("");
     setPaymentDay(1);
+    SetMembershipToEdit(undefined);
+  };
+
+  const substituirPorId = (
+    array: IMembership[],
+    novoObjeto: IMembership
+  ): IMembership[] => {
+    const indice = array.findIndex((obj) => obj.id === novoObjeto.id);
+
+    if (indice !== -1) {
+      array.splice(indice, 1, novoObjeto);
+    } else {
+      array.push(novoObjeto);
+    }
+
+    return array;
+  };
+
+  const deleteById = (
+    array: IMembership[],
+    novoObjeto: IMembership
+  ): IMembership[] => {
+    const indice = array.findIndex((obj) => obj.id === novoObjeto.id);
+
+    if (indice !== -1) {
+      array.splice(indice, 1);
+    }
+
+    resetStates();
+    SetIsVisible(false);
+
+    return array;
   };
 
   const handleSave = () => {
     const data: IMembership = {
+      id: membershipToEdit?.id ? membershipToEdit.id : generateUid(),
       membershipCompany: serviceName,
       membershipPayday: paymentDay,
       membershipValue: subscriptionValue,
     };
 
-    saveFunction(data);
+    if (membershipToEdit) {
+      SetMembershipList(substituirPorId(membershipList, data));
+    } else {
+      saveFunction(data);
+    }
+
     SetIsVisible(false);
     resetStates();
   };
@@ -86,7 +140,7 @@ export default function AddMembership({
               style={modalStyles.Searchbar}
               placeholder="Netflix, Amazon Prime, HBO"
               onChangeText={(text) => setServiceName(text)}
-              //   value={serviceName}
+              defaultValue={membershipToEdit ? serviceName : ""}
             />
           </View>
 
@@ -104,10 +158,9 @@ export default function AddMembership({
                 style={modalStyles.Searchbar}
                 placeholder="R$ 50,00"
                 inputMode="numeric"
+                defaultValue={membershipToEdit ? subscriptionValue : ""}
                 onChangeText={(text) => {
-                  // Remova caracteres não numéricos, exceto o ponto
                   const cleanedText = text.replace(/[^0-9.]/g, "");
-                  // Certifique-se de que o ponto apareça no máximo uma vez
                   const formattedText = cleanedText.replace(/(\..*)\./g, "$1");
                   setSubscriptionValue(parseFloat(formattedText).toFixed(2));
                 }}
@@ -136,9 +189,41 @@ export default function AddMembership({
             </View>
           </View>
 
-          <Pressable style={[modalStyles.SaveBtn]} onPress={handleSave}>
-            <Text style={modalStyles.SaveBtnText}>Salvar</Text>
-          </Pressable>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+
+              width: "100%",
+              justifyContent: membershipToEdit ? "space-between" : "center",
+              gap: 8,
+            }}
+          >
+            {membershipToEdit && (
+              <Pressable
+                style={[modalStyles.SaveBtn]}
+                onPress={() => {
+                  SetMembershipList(
+                    deleteById(membershipList, membershipToEdit)
+                  );
+                }}
+              >
+                <Text style={modalStyles.DeleteBtnText}>Excluir</Text>
+              </Pressable>
+            )}
+
+            <Pressable
+              style={[
+                modalStyles.SaveBtn,
+                {
+                  width: membershipToEdit ? "48%" : "100%",
+                },
+              ]}
+              onPress={handleSave}
+            >
+              <Text style={modalStyles.SaveBtnText}>Salvar</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </Modal>

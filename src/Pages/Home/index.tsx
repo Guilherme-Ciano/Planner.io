@@ -7,16 +7,22 @@ import {
   ScrollView,
 } from "react-native";
 import { styles } from "./styles";
-import { DataAtual } from "../../Utils/GlobalFunctions";
+import {
+  DataAtual,
+  recuperarArrayMembership,
+  salvarDadosMembership,
+} from "../../Utils/GlobalFunctions";
 import { useEffect, useState } from "react";
 import AddMembership from "../../Components/Modal";
 import { IMembership } from "../../Utils/GlobalModels";
-
 import { Icon } from "react-native-elements";
 
 export default function Homepage() {
   const [isVisible, SetIsVisisble] = useState(false);
   const [membershipList, SetMembershipList] = useState<IMembership[]>([]);
+  const [membershipToEdit, SetMembershipToEdit] = useState<
+    IMembership | undefined
+  >();
   const [searchText, setSearchText] = useState<string>("");
 
   const createNewMembership = (data: IMembership) => {
@@ -82,7 +88,10 @@ export default function Homepage() {
       return (
         <>
           {ordenarPorPayday(filteredMemberships).map((item) => (
-            <View style={styles.MembershipCard}>
+            <View
+              style={styles.MembershipCard}
+              key={`${item.membershipCompany}-${item.membershipPayday}`}
+            >
               <Text style={styles.Deadline}>{item.membershipPayday}</Text>
 
               <View style={styles.MembershipInfo}>
@@ -94,7 +103,12 @@ export default function Homepage() {
                 </Text>
               </View>
 
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  SetMembershipToEdit(item);
+                  SetIsVisisble(true);
+                }}
+              >
                 <Text>✏️</Text>
               </TouchableOpacity>
             </View>
@@ -117,6 +131,19 @@ export default function Homepage() {
       </View>
     );
   };
+
+  const redeemFromMemory = async () => {
+    const array = await recuperarArrayMembership();
+    SetMembershipList(array as IMembership[]);
+  };
+
+  useEffect(() => {
+    redeemFromMemory();
+  }, []);
+
+  useEffect(() => {
+    salvarDadosMembership(membershipList);
+  }, [membershipList, isVisible]);
 
   const clearSearch = () => setSearchText("");
   const search = () => {};
@@ -174,6 +201,10 @@ export default function Homepage() {
         isVisible={isVisible}
         SetIsVisible={SetIsVisisble}
         saveFunction={createNewMembership}
+        membershipList={membershipList}
+        SetMembershipList={SetMembershipList}
+        SetMembershipToEdit={SetMembershipToEdit}
+        membershipToEdit={membershipToEdit}
       />
 
       <StatusBar style="auto" />
