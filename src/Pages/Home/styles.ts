@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { GlobalStyles } from "../../Utils/GlobalStyles";
 
-const { Neumorphism, NormalText } = GlobalStyles;
+const { Neumorphism, BoldText } = GlobalStyles;
 
 export const styles = StyleSheet.create({
   HomeContainer: {
@@ -162,14 +162,15 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#F1F1F1",
 
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "flex-start",
 
     marginTop: 10,
   },
 
   DividerText: {
-    ...NormalText,
+    ...BoldText,
   },
 
   MembershipCard: {

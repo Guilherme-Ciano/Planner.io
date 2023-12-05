@@ -12,12 +12,19 @@ export const GlobalStyles = StyleSheet.create({
     elevation: 5,
   },
 
+  BoldText: {
+    color: "#2E2E2E",
+    fontFamily: "Poppins_700Bold",
+    fontSize: 14,
+    fontStyle: "normal",
+    fontWeight: "400",
+  },
+
   NormalText: {
     color: "#2E2E2E",
-    fontFamily: "Poppins",
-    fontSize: 16,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 14,
     fontStyle: "normal",
-    fontWeight: "700",
-    lineHeight: 16,
+    fontWeight: "400",
   },
 });

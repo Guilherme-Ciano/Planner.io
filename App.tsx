@@ -4,6 +4,7 @@ import Homepage from "./src/Pages/Home";
 
 import { useFonts } from "expo-font";
 import {
+  Poppins_700Bold,
   Poppins_400Regular,
   Poppins_200ExtraLight,
   Poppins_300Light,
@@ -12,6 +13,7 @@ import { RobotoMono_400Regular } from "@expo-google-fonts/roboto-mono";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
     Poppins_400Regular,
     Poppins_300Light,
     Poppins_200ExtraLight,
